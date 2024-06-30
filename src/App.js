@@ -1,94 +1,80 @@
 import './App.css';
-import {React, useState} from 'react';
-import { evaluate} from 'mathjs';
+import React, { useState } from 'react';
+import { evaluate } from 'mathjs';
 import HistoryButton from './HistoryButton';
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></link>
-
-
+import KeypadButton from './KeypadButton';
 
 function App() {
-  const [equation, setEquation]= useState('');
+  const [equation, setEquation] = useState('');
 
   const handleClick = (symbol) => (e) => {
     e.preventDefault();
-    let newEquation = equation+symbol;
+    let newEquation = equation + symbol;
     setEquation(newEquation);
   }
 
-  const handleSubmit = (symbol) => (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     try {
       let convertedEquation = equation.replace(/√(\d+)/g, 'sqrt($1)');
       let result = evaluate(convertedEquation).toString();
       setEquation(result);
-    }
-    catch {
+    } catch {
       alert('invalid equation');
     }
   }
 
   const handleDelete = (e) => {
     e.preventDefault();
-    let newEquation = equation.slice(0,-1);
+    let newEquation = equation.slice(0, -1);
     setEquation(newEquation);
   }
 
-
   return (
     <div className='outer'>
-      <div className='left'>
-        <div className = 'popup'></div>
-      </div>
       <div className='calculator'>
-      <form>
-        <div className='display'>
-          <div className = 'history'>
-            {/* <HistoryButton/> */}
+        <form>
+          <div className='display'>
+            <div className='history'>
+              <HistoryButton />
+            </div>
+            <div className='result'>
+              <h2>{equation}</h2>
+            </div>
           </div>
-          <div className = 'result'>
-            <h2>{equation}</h2>
+          <div className='keypad'>
+            <div className='button-row'>
+                <KeypadButton symbol="7" onClick={handleClick} />
+                <KeypadButton symbol="8" onClick={handleClick} />
+                <KeypadButton symbol="9" onClick={handleClick} />
+                <KeypadButton symbol="/" onClick={handleClick} />
+                <button onClick={handleDelete}>←</button>
+              </div>
+              <div className='button-row'>
+                <KeypadButton symbol="4" onClick={handleClick} />
+                <KeypadButton symbol="5" onClick={handleClick} />
+                <KeypadButton symbol="6" onClick={handleClick} />
+                <KeypadButton symbol="*" onClick={handleClick} />
+                <KeypadButton symbol="%" onClick={handleClick} />
+              </div>
+              <div className='button-row'>
+                <KeypadButton symbol="1" onClick={handleClick} />
+                <KeypadButton symbol="2" onClick={handleClick} />
+                <KeypadButton symbol="3" onClick={handleClick} />
+                <KeypadButton symbol="-" onClick={handleClick} />
+                <KeypadButton symbol="√" onClick={handleClick} />
+              </div>
+              <div className='button-row'>
+                <KeypadButton symbol="0" onClick={handleClick} />
+                <KeypadButton symbol="00" onClick={handleClick} />
+                <KeypadButton symbol="." onClick={handleClick} />
+                <KeypadButton symbol="+" onClick={handleClick} />
+                <button onClick={handleSubmit} style={{ backgroundColor: 'gray' }}>=</button>
+            </div>
           </div>
-        </div>
-
-        <div className="keypad">
-        <div className = "button-row">
-          <button onClick={handleClick('7')}>7</button>
-          <button onClick={handleClick('8')}>8</button>
-          <button onClick={handleClick('9')}>9</button>
-          <button onClick={handleClick('/')}>÷</button>
-          <button onClick = {handleDelete}>←</button>
-        </div>
-        
-        <div className = "button-row">
-          <button onClick={handleClick('4')}>4</button>
-          <button onClick={handleClick('5')}>5</button>
-          <button onClick={handleClick('6')}>6</button>
-          <button onClick={handleClick('*')}>x</button>
-          <button onClick={handleClick('%')}>%</button>
-        </div>
-
-        <div className = "button-row">
-          <button onClick={handleClick('1')}>1</button>
-          <button onClick={handleClick('2')}>2</button>
-          <button onClick={handleClick('3')}>3</button>
-          <button onClick={handleClick('-')}>-</button>
-          <button onClick={handleClick('√')}>√</button>
-        </div>
-
-        <div className = "button-row">
-          <button onClick={handleClick('0')}>0</button>
-          <button onClick={handleClick('00')}>00</button>
-          <button onClick={handleClick('.')}>.</button>
-          <button onClick={handleClick('+')}>+</button>
-          <button onClick={handleSubmit()} style={{backgroundColor:'gray'}}>=</button>
-        </div>
-        </div>
-
-      </form>
+        </form>
+      </div>
     </div>
-    </div>
-  
   );
 }
 

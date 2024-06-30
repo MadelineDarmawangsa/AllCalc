@@ -7,7 +7,8 @@ import PopUp from './PopUp';
 const HistoryButton = () => {
   const [showPopUp, setShowPopUp] = useState(false);
 
-  const togglePopUp = () => {
+  const togglePopUp = (e) => {
+    e.preventDefault();
     setShowPopUp(!showPopUp);
   };
 
@@ -15,7 +16,6 @@ const HistoryButton = () => {
     <div>
       <button className="history-button" onClick={togglePopUp}>
         <FontAwesomeIcon icon={faClockRotateLeft} className="icon" />
-        History
       </button>
       {showPopUp && <PopUp closePopUp={togglePopUp} />}
     </div>

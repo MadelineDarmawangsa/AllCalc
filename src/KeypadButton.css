@@ -1,0 +1,19 @@
+.keypad-button {
+    /* padding: 5px 10px 5px 10px; */
+    height:90px;
+    width: 70px;
+    border-radius: 0;
+    border-width: 1px;
+    font-size: 25px;
+    border: 0.5px solid rgba(134, 127, 127, 0.3);
+    font-weight:200;
+    transition: background-color 0.3s ease;
+}
+
+.keypad-button:hover {
+background-color: rgba(234, 234, 234, 0.469);
+}
+
+.keypad-button:active {
+background-color: rgba(187, 187, 187, 0.469);
+}
