@@ -1,24 +1,44 @@
 .popup {
-  position: fixed;
-  top: -130px;
+  /* position: absolute; */
+  /* top: -170px;
   left: 220px;
-  width: 300px; /* Set the desired width for the popup */
+  width: 300px;
   height: 100%; /* Set the height as per your requirement */
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  top: 49%; /* Center vertically */
+  left: 25%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Center the popup */
+  width: 300px; /* Set the desired width for the popup */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items to the top to grow downwards */
+  max-height: 470px;
+  border-radius: 30px;
 }
 
 .popup-inner {
-  background: white;
+  background: rgba(255, 255, 255, 0.768);
+  color: rgb(116, 116, 116);
+  width: 300px;
   padding: 10px;
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-height: 470px;
+  overflow: auto;
+  border-radius: 30px;
 }
 
 .popup-inner h2{
   color: rgb(116, 116, 116);
+}
+
+.popup-inner ul {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove default padding */
 }
 
 .close-button {

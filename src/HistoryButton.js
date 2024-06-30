@@ -4,7 +4,7 @@ import { faClockRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import './HistoryButton.css';
 import PopUp from './PopUp';
 
-const HistoryButton = () => {
+const HistoryButton = ({history}) => {
   const [showPopUp, setShowPopUp] = useState(false);
 
   const togglePopUp = (e) => {
@@ -17,7 +17,7 @@ const HistoryButton = () => {
       <button className="history-button" onClick={togglePopUp}>
         <FontAwesomeIcon icon={faClockRotateLeft} className="icon" />
       </button>
-      {showPopUp && <PopUp closePopUp={togglePopUp} />}
+      {showPopUp && <PopUp closePopUp={togglePopUp} history={history} />}
     </div>
   );
 };

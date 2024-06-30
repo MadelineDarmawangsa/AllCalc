@@ -1,12 +1,24 @@
 import React from 'react';
 import './PopUp.css';
 
-const PopUp = ({ closePopUp }) => {
+const PopUp = ({ closePopUp, history = [] }) => {
+  const historyList = () => {
+    return (
+      <ul>
+        {history.map((item, index) => (
+          <li key={index}>
+            {item}
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
   return (
     <div className="popup">
       <div className="popup-inner">
         <h2>History</h2>
-        <p>This is the popup content.</p>
+        {historyList()}
         <button className="close-button" onClick={closePopUp}>Close</button>
       </div>
     </div>

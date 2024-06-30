@@ -6,6 +6,7 @@ import KeypadButton from './KeypadButton';
 
 function App() {
   const [equation, setEquation] = useState('');
+  const [history, setHistory] = useState([]);
 
   const handleClick = (symbol) => (e) => {
     e.preventDefault();
@@ -19,6 +20,7 @@ function App() {
       let convertedEquation = equation.replace(/√(\d+)/g, 'sqrt($1)');
       let result = evaluate(convertedEquation).toString();
       setEquation(result);
+      setHistory([...history, equation + ' = ' + result]);
     } catch {
       alert('invalid equation');
     }
@@ -34,10 +36,10 @@ function App() {
     <div className='outer'>
       <div className='calculator'>
         <form>
-          <div className='display'>
-            <div className='history'>
-              <HistoryButton />
-            </div>
+        <div className='display'>
+          <div className='history'>
+            <HistoryButton history={history} />
+          </div>
             <div className='result'>
               <h2>{equation}</h2>
             </div>
